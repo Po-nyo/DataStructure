@@ -29,13 +29,12 @@ public class Main {
             pascal[i] = new Node(1);
             Node prev = pascal[i];
 
-            for(int j=0; j<i; j++) {
-                if(j == i-1) {
+            for(int j=2; j<=i+1; j++) {
+                if(j == i+1) {
                     prev.next = new Node(1);
                 }
                 else {
-                    Node temp = pascal[i-1];
-                    int currentNum = selectNth(temp, j).item + selectNth(temp, j+1).item;
+                    int currentNum = selectNth(pascal[i-1], j-1).item + selectNth(pascal[i-1], j).item;
                     prev.next = new Node(currentNum);
                 }
                 prev = prev.next;
@@ -46,7 +45,7 @@ public class Main {
     public static Node selectNth(Node node, int n) {
         Node temp = node;
 
-        for(int i=0; i<n; i++)
+        for(int i=1; i<n; i++)
             temp = temp.next;
 
         return temp;
@@ -55,10 +54,12 @@ public class Main {
     public static void print(Node[] heads) {
         for(Node node: heads) {
             Node temp = node;
+
             while(temp != null) {
                 System.out.print(temp.item + "\t");
                 temp = temp.next;
             }
+
             System.out.println();
         }
     }
