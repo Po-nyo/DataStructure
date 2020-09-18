@@ -21,7 +21,9 @@ public class TestDate {
             year = inFile.nextInt();
             month = inFile.nextInt();
             day = inFile.nextInt();
+
             date = new Date(year, month, day);
+
             headFirst = insertFirst(headFirst, date);
             headLast = insertLast(headLast, date);
             headOrder = insertSortedOrder(headOrder, date);
@@ -72,7 +74,7 @@ public class TestDate {
                 Node current = headOrder;
 
                 while(current.next != null) {
-                    if(date.compareTo(current.item) >= 0 && date.compareTo(current.next.item) < 0) {
+                    if(date.compareTo(current.next.item) < 0) {
                         newNode.next = current.next;
                         current.next = newNode;
                         return headOrder;
@@ -93,6 +95,7 @@ public class TestDate {
             System.out.println(temp.item.toString());
             temp = temp.next;
         }
+
         System.out.println();
     }
 }

@@ -16,7 +16,7 @@ public class Main {
 
             Node[] pascal = new Node[rows];
 
-            makeTriangle(pascal, rows);
+            makeTriangle(pascal);
             print(pascal);
         }
 
@@ -24,7 +24,7 @@ public class Main {
         System.out.println("-- End --");
     }
 
-    public static void makeTriangle(Node[] pascal, int rows) {
+    public static void makeTriangle(Node[] pascal) {
         for(int i=0; i<pascal.length; i++) {
             pascal[i] = new Node(1);
             Node prev = pascal[i];
@@ -42,18 +42,18 @@ public class Main {
         }
     }
 
-    public static Node selectNth(Node node, int n) {
-        Node temp = node;
+    public static Node selectNth(Node head, int n) {
+        Node target = head;
 
         for(int i=1; i<n; i++)
-            temp = temp.next;
+            target = target.next;
 
-        return temp;
+        return target;
     }
 
     public static void print(Node[] heads) {
-        for(Node node: heads) {
-            Node temp = node;
+        for(Node head: heads) {
+            Node temp = head;
 
             while(temp != null) {
                 System.out.print(temp.item + "\t");
