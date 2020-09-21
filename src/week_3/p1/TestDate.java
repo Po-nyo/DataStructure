@@ -40,9 +40,7 @@ public class TestDate {
     }
 
     public static Node insertFirst(Node headFirst, Date date) {
-        headFirst = new Node(date, headFirst);
-
-        return headFirst;
+        return headFirst = new Node(date, headFirst);
     }
 
     public static Node insertLast(Node headLast, Date date) {
