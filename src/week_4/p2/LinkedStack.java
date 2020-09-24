@@ -18,17 +18,17 @@ public class LinkedStack<T> implements Stack<T> {
         }
     }
 
-    private Node<T> head;
+    private Node<T> top;
     private int size;
 
     public LinkedStack() {
-        this.head = null;
+        this.top = null;
         this.size = 0;
     }
 
     @Override
     public void clear() {
-        this.head = null;
+        this.top = null;
     }
 
     @Override
@@ -38,13 +38,13 @@ public class LinkedStack<T> implements Stack<T> {
 
     @Override
     public T peek() {
-        return head.item;
+        return top.item;
     }
 
     @Override
     public T pop() {
-        Node<T> target = head;
-        this.head = head.next;
+        Node<T> target = top;
+        this.top = top.next;
         this.size--;
 
         return target.item;
@@ -52,7 +52,7 @@ public class LinkedStack<T> implements Stack<T> {
 
     @Override
     public void push(T item) {
-        this.head = new Node<T>(item, head);
+        this.top = new Node<T>(item, top);
         this.size++;
     }
 
@@ -64,7 +64,7 @@ public class LinkedStack<T> implements Stack<T> {
     @Override
     public String toString() {
         String str = "";
-        Node<T> temp = this.head;
+        Node<T> temp = this.top;
 
         while(temp != null) {
             str += " " + temp.item;
