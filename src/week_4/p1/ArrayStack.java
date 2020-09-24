@@ -5,49 +5,49 @@ import week_4.Stack;
 public class ArrayStack<T> implements Stack<T> {
 
     private T[] array;
-    private int size;
+    private int top;
     private int maxSize = 50;
 
     public ArrayStack() {
         this.array = (T[])new Object[maxSize];
-        this.size = 0;
+        this.top = 0;
     }
 
     @Override
     public void clear() {
-        this.size = 0;
+        this.top = 0;
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return top == 0;
     }
 
     @Override
     public T peek() {
-        return array[size-1];
+        return array[top];
     }
 
     @Override
     public T pop() {
-        return array[--size];
+        return array[top--];
     }
 
     @Override
     public void push(T item) {
-        array[size++] = item;
+        array[++top] = item;
     }
 
     @Override
     public int size() {
-        return this.size;
+        return this.top;
     }
 
     @Override
     public String toString() {
         String str = "";
 
-        for(int i=0; i<this.size; i++) {
+        for(int i = 0; i<this.top; i++) {
             str = this.array[i] + " " + str;
         }
 
