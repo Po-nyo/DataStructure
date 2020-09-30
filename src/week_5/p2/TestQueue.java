@@ -83,7 +83,7 @@ public class TestQueue {
         }
     }
 
-    /* 아스키 코드 사용*/
+    /* 아스키 코드 사용 */
     public static boolean isInteger_2(String str) {
         for(int i=0; i<str.length(); i++) {
             char current = str.charAt(i);
