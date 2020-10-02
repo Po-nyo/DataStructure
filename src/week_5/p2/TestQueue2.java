@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class TestQueue {
+public class TestQueue2 {
 
     public static void main(String[] args) throws FileNotFoundException {
         ArrayQueue<Integer> queue = new ArrayQueue<>();
@@ -43,7 +43,7 @@ public class TestQueue {
         in.close();
     }
 
-    /* Integer, Double 클래스 사용o */
+    /* Integer, Double 클래스 사용x */
     public static void categorize() throws FileNotFoundException {
         Scanner inFile = new Scanner(new File("./input/week5_input.txt"));
         ArrayQueue<Integer> iQueue = new ArrayQueue<>();
@@ -53,9 +53,9 @@ public class TestQueue {
         while(inFile.hasNext()) {
             String str = inFile.next();
             if(isInteger(str))
-                iQueue.enqueue(Integer.parseInt(str));
+                iQueue.enqueue(TypeConversion.String2Int(str));
             else if(isDouble(str))
-                dQueue.enqueue(Double.parseDouble(str));
+                dQueue.enqueue(TypeConversion.String2Double(str));
             else
                 sQueue.enqueue(str);
         }
@@ -66,20 +66,27 @@ public class TestQueue {
     }
 
     public static boolean isInteger(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (Exception e) {
-            return false;
+        for(int i=0; i<str.length(); i++) {
+            char current = str.charAt(i);
+            if(current < '0' || current > '9')
+                return false;
         }
+
+        return true;
     }
 
     public static boolean isDouble(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (Exception e) {
-            return false;
+        int count = 0;
+
+        for(int i=0; i<str.length(); i++) {
+            char current = str.charAt(i);
+
+            if(current == '.')
+                count++;
+            else if (current < '0' || current > '9')
+                    return false;
         }
+
+        return count <= 1;
     }
 }
