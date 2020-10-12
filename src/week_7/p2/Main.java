@@ -17,7 +17,7 @@ public class Main {
             inFile.close();
         }
         catch (FileNotFoundException e) {
-            System.out.println("Error opening the file: input.txt" );
+            System.out.println("Error opening the file: week7_input.txt" );
         }
     }
 
