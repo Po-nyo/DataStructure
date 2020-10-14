@@ -39,10 +39,10 @@ public class Student implements Comparable<Student> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(this.number + "\t");
-        sb.append(this.name + "\t\t");
-        sb.append("total credits: " + getTotalCredits() + "\n");
-        sb.append(this.courseList + "\n");
+        sb.append(this.number).append("\t");
+        sb.append(this.name).append("\t\t");
+        sb.append("total credits: ").append(getTotalCredits()).append("\n");
+        sb.append(this.courseList).append("\n");
 
         return sb.toString();
     }
