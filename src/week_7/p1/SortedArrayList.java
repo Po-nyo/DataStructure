@@ -2,6 +2,7 @@ package week_7.p1;
 
 import week_7.List;
 
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class SortedArrayList<T extends Comparable<T>> implements List<T> {
@@ -35,41 +36,8 @@ public class SortedArrayList<T extends Comparable<T>> implements List<T> {
         if(isFull())
             resize();
 
-        if(isEmpty())
-            this.items[this.size++] = item;
-        else {
-            int low = 0;
-            int high = this.size - 1;
-            int pos = 0;
-
-            while(low <= high) {
-                int mid = (low + high) / 2;
-                T midItem = this.items[mid];
-
-                if(item.compareTo(midItem) == 0) {
-                    pos = mid;
-                    break;
-                }
-                else if(item.compareTo(midItem) > 0) {
-                    low = mid + 1;
-                    pos = low;
-                }
-                else {
-                    high = mid - 1;
-                    pos = high;
-                }
-            }
-
-            if(pos < 0)
-                pos = 0;
-            else if(pos < this.size && item.compareTo(this.items[pos]) > 0)
-                pos += 1;
-
-            for(int i=++this.size-1; i>pos; i--)
-                this.items[i] = this.items[i-1];
-
-            this.items[pos] = item;
-        }
+        this.items[this.size++] = item;
+        Arrays.sort(this.items, 0, this.size);
     }
 
     public boolean remove(T item) {
@@ -146,7 +114,7 @@ public class SortedArrayList<T extends Comparable<T>> implements List<T> {
         StringBuilder sb = new StringBuilder();
 
         for(int i=0; i<this.size; i++)
-            sb.append(this.items[i] + " ");
+            sb.append(this.items[i]).append(" ");
 
         return sb.toString();
     }
