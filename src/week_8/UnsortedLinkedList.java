@@ -120,15 +120,14 @@ public class UnsortedLinkedList<T> {
     }
 
     public void reversePrint() {
-        StringBuilder sb = new StringBuilder();
-        reversePrint(head, sb);
-        System.out.println(sb);
+        reversePrint(head);
+        System.out.println();
     }
 
-    private void reversePrint(Node<T> node, StringBuilder sb) {
+    private void reversePrint(Node<T> node) {
         if(node != null) {
-            reversePrint(node.next, sb);
-            sb.append(node.item).append(" ");
+            reversePrint(node.next);
+            System.out.print(node.item + " ");
         }
     }
 
