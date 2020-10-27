@@ -132,6 +132,22 @@ public class UnsortedLinkedList<T> {
     }
 
     public UnsortedLinkedList<T> copy() {
-        return null;
+        UnsortedLinkedList<T> newList = new UnsortedLinkedList<>();
+
+        if(!isEmpty()) {
+            newList.head = new Node<>(this.head.item);
+            newList.size++;
+            copy(newList, newList.head, this.head.next);
+        }
+
+        return newList;
+    }
+
+    private void copy(UnsortedLinkedList<T> newList, Node<T> newListNode, Node<T> targetListNode) {
+        if(targetListNode != null) {
+            newListNode.next = new Node<T>(targetListNode.item);
+            copy(newList, newListNode.next, targetListNode.next);
+            newList.size++;
+        }
     }
 }
