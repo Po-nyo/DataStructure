@@ -6,8 +6,6 @@ public class UnsortedLinkedList<T> {
         private T item;
         private Node<T> next;
 
-        private Node() {next = null;}
-
         private Node(T item) {
             this(item, null);
         }
@@ -39,7 +37,7 @@ public class UnsortedLinkedList<T> {
         size = 0;
     }
 
-    public void print() {		// 재귀로 구현
+    public void print() {
         print(head);
         System.out.println();
     }
@@ -51,7 +49,7 @@ public class UnsortedLinkedList<T> {
         }
     }
 
-    public void insertFirst(T item) {	// 맨 앞에 삽입
+    public void insertFirst(T item) {
         head = new Node<T>(item, head);
         size++;
     }
@@ -83,7 +81,7 @@ public class UnsortedLinkedList<T> {
 
     public void insertLast(T item) {
         if(head == null)
-            head = new Node<T>(item);
+            head = new Node<>(item);
         else
             insertLast(head, item);
         size++;
@@ -91,7 +89,7 @@ public class UnsortedLinkedList<T> {
 
     private void insertLast(Node<T> node, T item) {
         if(node.next == null)
-            node.next = new Node<T>(item);
+            node.next = new Node<>(item);
         else
             insertLast(node.next, item);
     }
@@ -116,7 +114,22 @@ public class UnsortedLinkedList<T> {
     }
 
     public boolean removeAll(T item) {
-        return false;
+        int tmpSize = size;
+        head = removeAll(head, item);
+        return tmpSize != size;
+    }
+
+    private Node<T> removeAll(Node<T> node, T item) {
+        if(node == null)
+            return null;
+        else if(node.item.equals(item)) {
+            size--;
+            return node.next = removeAll(node.next, item);
+        }
+        else {
+            node.next = removeAll(node.next, item);
+            return node;
+        }
     }
 
     public void reversePrint() {
@@ -145,7 +158,7 @@ public class UnsortedLinkedList<T> {
 
     private void copy(UnsortedLinkedList<T> newList, Node<T> newListNode, Node<T> targetListNode) {
         if(targetListNode != null) {
-            newListNode.next = new Node<T>(targetListNode.item);
+            newListNode.next = new Node<>(targetListNode.item);
             copy(newList, newListNode.next, targetListNode.next);
             newList.size++;
         }
