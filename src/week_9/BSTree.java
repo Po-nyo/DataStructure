@@ -132,8 +132,7 @@ public class BSTree<T extends Comparable<T>> {
     }
 
     public int height() {
-        int count_nodes = countNodes();
-        return (int)(Math.log(count_nodes)/Math.log(2));
+        return (int)(Math.log(countNodes())/Math.log(2));
     }
 
     public int countNodes() {
