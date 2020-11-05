@@ -147,20 +147,20 @@ public class UnsortedLinkedList<T> {
     public UnsortedLinkedList<T> copy() {
         UnsortedLinkedList<T> newList = new UnsortedLinkedList<>();
 
-        if(!isEmpty()) {
-            newList.head = new Node<>(this.head.item);
-            newList.size++;
-            copy(newList, newList.head, this.head.next);
-        }
+        if(!isEmpty())
+            newList.head = copy(this.head);
+        newList.size = this.size;
 
         return newList;
     }
 
-    private void copy(UnsortedLinkedList<T> newList, Node<T> newListNode, Node<T> targetListNode) {
-        if(targetListNode != null) {
-            newListNode.next = new Node<>(targetListNode.item);
-            copy(newList, newListNode.next, targetListNode.next);
-            newList.size++;
+    private Node<T> copy(Node<T> targetListNode) {
+        if(targetListNode == null)
+            return null;
+        else {
+            Node<T> newNode = new Node<>(targetListNode.item);
+            newNode.next = copy(targetListNode.next);
+            return newNode;
         }
     }
 }
